@@ -18,21 +18,25 @@
         </header>
         <main>
             <ul class="list-group">
-                <li class="link in links" v-for="link in links"><a :href="link.url">{{link.linktext}}</a></li>
+                <li class="list-group-item d-flex justify-content-between" v-for="link in links"><a
+                        :href="link.url">{{link.linktext}}</a>
+                    <span class="badge badge-secondary">{{link.votes}}</span>
+                </li>
 
             </ul>
         </main>
 
     </div>
+    <footer class="alert-success">Das ist eine coole Seite</footer>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
         const app = new Vue({
             el: '#app',
             data: {
                 links: [
-                    { linktext: 'Kohnlehome', url: 'https://kohnlehome.de' },
-                    { linktext: 'Wetter', url: 'https://www.wetter.com/deutschland/muenchen/DE0006515.html' },
-                    { linktext: 'Scholar', url: 'https://scholar.google.com/' }
+                    { linktext: 'Kohnlehome', url: 'https://kohnlehome.de', votes: 5 },
+                    { linktext: 'Wetter', url: 'https://www.wetter.com/deutschland/muenchen/DE0006515.html', votes: 51 },
+                    { linktext: 'Scholar', url: 'https://scholar.google.com/', votes: 511 }
                 ]
             }
         });
