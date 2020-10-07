@@ -22,7 +22,7 @@
                     <li class="list-group-item d-flex justify-content-between" v-for="link in links"><a
                             :href="link.url">{{link.linktext}}</a>
                         <div><span class="badge badge-secondary">{{link.votes}}</span>
-                            <button class="btn btn-outline-danger">+</button>
+                            <button class="btn btn-outline-danger" @click="upvote">+</button>
                         </div>
                     </li>
 
@@ -41,6 +41,11 @@
                     { linktext: 'Wetter', url: 'https://www.wetter.com/deutschland/muenchen/DE0006515.html', votes: 51 },
                     { linktext: 'Scholar', url: 'https://scholar.google.com/', votes: 511 }
                 ]
+            },
+            methods: {
+                upvote: function () {
+                    console.log('button geklickt')
+                }
             }
 
         });
