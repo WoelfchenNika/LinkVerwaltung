@@ -37,18 +37,34 @@
             el: '#app',
             data: {
                 links: [
-                    { id: 0, linktext: 'Kohnlehome', url: 'https://kohnlehome.de', votes: 0 },
-                    { id: 1, linktext: 'Wetter', url: 'https://www.wetter.com/deutschland/muenchen/DE0006515.html', votes: 0 },
-                    { id: 2, linktext: 'Scholar', url: 'https://scholar.google.com/', votes: 0 }
+                    { id: 0, linktext: 'Kohnlehome', url: 'https://kohnlehome.de', votes: 3 },
+                    { id: 1, linktext: 'Wetter', url: 'https://www.wetter.com/deutschland/muenchen/DE0006515.html', votes: 04 },
+                    { id: 2, linktext: 'Scholar', url: 'https://scholar.google.com/', votes: 40 }
                 ]
             },
             methods: {
                 upvote: function (id) {
-                    {
-                        this.links[id].votes++;
-                    }
+
+                    //this.links[id].votes++; funktioniert nicht, wenn umsoritert wurde
+                    clickedlink = this.links.find(link => link.id === id);
+                    clickedlink.votes++;
+                    this.sortieren();
+
+                },
+                sortieren: function () {
+                    this.links.sort(
+                        function (link1, link2) {
+                            return link2.votes - link1.votes;
+                        }
+                    );
+
                 }
+            },
+            mounted() {
+                this.sortieren();
             }
+
+
 
         });
     </script>
