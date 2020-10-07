@@ -12,39 +12,31 @@
 </head>
 
 <body>
-    <div id='app' class="container">
+    <div id="app" class="container">
         <header>
             <h1>Linkverwaltung</h1>
         </header>
         <main>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"><a href="https://scholar.google.com/"
-                        class="badge badge-warning">Scholar</a></li>
-                <li class="list-group-item"><a href="https://kohnlehome.de" class="badge badge-danger">kohnlehome</a>
-                </li>
-                <li class="list-group-item"><a href="https://www.wetter.com/deutschland/muenchen/DE0006515.html"
-                        class="badge badge-dark">Wetter</a></li>
-                <button type="button" class="btn btn-link">click</button>
-                <a class="btn btn-primary" href="https://kohnlehome.de" role="button">Link</a>
+            <ul class="list-group">
+                <li class="link in links" v-for="link in links"><a :href="link.url">{{link.linktext}}</a></li>
+
             </ul>
         </main>
 
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-        <script>
-            const app = new Vue({
-                el: ’#app’,
-                data: {
-                    links: [
-                        { linktext: 'Kohnlehome', url: 'https://kohnlehome.de' },
-                        { linktext: 'Wetter', url: 'https://www.wetter.com/deutschland/muenchen/DE0006515.html' },
-                        { linktext: 'Scholar', url: 'https://scholar.google.com/' }
-
-
-                    ]
-                }
-            });
-        </script>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                links: [
+                    { linktext: 'Kohnlehome', url: 'https://kohnlehome.de' },
+                    { linktext: 'Wetter', url: 'https://www.wetter.com/deutschland/muenchen/DE0006515.html' },
+                    { linktext: 'Scholar', url: 'https://scholar.google.com/' }
+                ]
+            }
+        });
+    </script>
 </body>
 
 </html>
