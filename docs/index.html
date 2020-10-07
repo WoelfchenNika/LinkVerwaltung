@@ -1,32 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linksverwaltung</title>
+    <title>Linkverwaltung</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
 
 </head>
 
 <body>
-    <header>
-        <h1>Linksverwaltung</h1>
-    </header>
-    <ul>
-        <div class="Scholar" role="alert">
-            <li><a
-                    href="https://www.google.com/search?q=google+scholar&rlz=1C1GCEU_deDE918DE918&oq=g&aqs=chrome.2.69i60j69i57j69i59l3j69i60l3.2447j0j7&sourceid=chrome&ie=UTF-8">scholar</a>
-            </li>
-        </div>
-        <li><a href="http://kohnlehome.de/">kohnlehome</a></li>
-        <li><a href="https://www.wetter.com/deutschland/muenchen/DE0006515.html">wetter</a></li>
-        <h2>d</h2>
-    </ul>
+    <div id='app' class="container">
+        <header>
+            <h1>Linkverwaltung</h1>
+        </header>
+        <main>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a href="https://scholar.google.com/"
+                        class="badge badge-warning">Scholar</a></li>
+                <li class="list-group-item"><a href="https://kohnlehome.de" class="badge badge-danger">kohnlehome</a>
+                </li>
+                <li class="list-group-item"><a href="https://www.wetter.com/deutschland/muenchen/DE0006515.html"
+                        class="badge badge-dark">Wetter</a></li>
+                <button type="button" class="btn btn-link">click</button>
+                <a class="btn btn-primary" href="https://kohnlehome.de" role="button">Link</a>
+            </ul>
+        </main>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            const app = new Vue({
+                el: ’#app’,
+                data: {
+                    links: [
+                        { linktext: 'Kohnlehome', url: 'https://kohnlehome.de' },
+                        { linktext: 'Wetter', url: 'https://www.wetter.com/deutschland/muenchen/DE0006515.html' },
+                        { linktext: 'Scholar', url: 'https://scholar.google.com/' }
 
 
-
+                    ]
+                }
+            });
+        </script>
+    </div>
 </body>
 
 </html>
