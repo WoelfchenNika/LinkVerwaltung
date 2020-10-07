@@ -17,17 +17,20 @@
             <h1>Linkverwaltung</h1>
         </header>
         <main>
-            <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between" v-for="link in links"><a
-                        :href="link.url">{{link.linktext}}</a>
-                    <span class="badge badge-secondary">{{link.votes}}</span>
-                </li>
+            <div>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between" v-for="link in links"><a
+                            :href="link.url">{{link.linktext}}</a>
+                        <div><span class="badge badge-secondary">{{link.votes}}</span>
+                            <button class="btn btn-outline-danger">+</button>
+                        </div>
+                    </li>
 
-            </ul>
+                </ul>
         </main>
 
     </div>
-    <footer class="alert-success">Das ist ein coole Seite</footer>
+    <footer class="alter alert-success">Das ist ein coole Seite</footer>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
         const app = new Vue({
@@ -39,7 +42,7 @@
                     { linktext: 'Scholar', url: 'https://scholar.google.com/', votes: 511 }
                 ]
             }
-        
+
         });
     </script>
 </body>
