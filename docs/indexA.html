@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linkverwaltung</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="app" class="container">
+        <header>
+            <h1>Linkverwaltung</h1>
+        </header>
+        <main>
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between" v-for="link in links">
+                    <a :href="link.url">{{link.linktext}}</a>
+                    <div>
+                        <span class="badge badge-primary">{{link.votes}}</span>
+                        <button class="btn btn-outline-danger" @click="upvote(link.id)">+</button>
+                    </div>
+                </li>
+            </ul>
+        </main>
+        <div class="container fixed-bottom footer">
+            <fieldset class="form-row align-items-center border mb-1">
+                <legend>Neuer Link</legend>
+                <div class="col-auto">
+                    <label class="sr-only" for="inputName">Name</label>
+                    <input v-model="newName" class="form-control" id="inputName" type="text" placeholder="Name">
+                </div>
+                <div class="col-auto">
+                    <label class="sr-only" for="inputUrl">Url</label>
+                    <input v-model="newUrl" class="form-control" id="inputUrl" type="text" placeholder="Url">
+                </div>
+                <div class="col-auto">
+                    <button @click="newLink" class="btn btn-primary mb-1">Hinzufügen</button>
+                </div>
+            </fieldset>
+            <footer class="border alert alert-success">Diese seite ist sehr gut.
+            </footer>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                links: [
+                    { id: 0, linktext: 'kohnlehome.de', url: 'http://kohnlehome.de', votes: 1 },
+                    { id: 1, linktext: 'scolar', url: 'https://scholar.google.com/', votes: 3 },
+                    { id: 2, linktext: 'wetter', url: 'https://www.wetter.com/deutschland/muenchen/DE0006515.html', votes: 4 },
+
+                ],
+                nextId: 4,
+                newName: '',
+                newUrl: ''
+            },
+            methods: {
+                upvote(id) {
+                    //this.links[id].votes++; Funktioniert nicht, wenn umsortiert wurde
+                    clickedLink = this.links.find(link => link.id === id);
+                    clickedLink.votes++;
+                    this.sortieren();
+                },
+                sortieren() {
+                    this.links.sort(
+                        function (link1, link2) {
+                            return link2.votes - link1.votes;
+                        }
+                    );
+                },
+                newLink() {
+                    newLink = { id: this.nextId, linktext: this.newName, url: this.newUrl, votes: 0 };
+                    this.nextId++;
+                    this.links.push(newLink);
+                    this.sortieren();
+                }
+            },
+            mounted() {
+                this.sortieren();
+            }
+        });
+    </script>
+</body>
+
+</html>
