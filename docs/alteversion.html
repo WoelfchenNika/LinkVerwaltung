@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linkverwaltung</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+    <div id="app" class="container">
+        <header>
+            <h1>Linkverwaltung</h1>
+        </header>
+        <main>
+            <div>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between" v-for="link in links"><a
+                            :href="link.url">{{link.linktext}}</a>
+                        <div><span class="badge badge-secondary">{{link.votes}}</span>
+
+                    <li class="input-group-prepend" v-for="hinzufuegen"></li>
+                    <a:href="link.url">{{link.hinzufuegen}}</a>
+
+                        <button class="btn btn-outline-danger" @click="upvote(link.id)">+</button>
+            </div>
+            </li>
+
+            </ul>
+        </main>
+
+    </div>
+    <fieldset>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Name und URL</span>
+            </div>
+            <input type="text" aria-label=" name" class="form-control">
+            <input type="url" aria-label="url" class="form-control">
+        </div>
+        <button class="btn btn-outline-secondary" type="button" id="hinzufuegen">Button</button>
+        </div>
+
+
+
+
+
+
+        <br>
+        <legend>Neuerlink</legend>
+        <label for="namenEingabe">Name</label> <br>
+        <input type="text">
+        <label for="URLEingabe">URL</label>
+        <input type="url">
+
+        <input class="btn btn-primary" type="button" id="hinzufuegen1" value="Hinzufügen">
+
+
+
+
+
+
+
+
+        </div>
+
+    </fieldset>
+    <footer class="alter alert-success">Das ist ein coole Seite</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                links: [
+                    { id: 0, linktext: 'Kohnlehome', url: 'https://kohnlehome.de', votes: 3 },
+                    { id: 1, linktext: 'Wetter', url: 'https://www.wetter.com/deutschland/muenchen/DE0006515.html', votes: 04 },
+                    { id: 2, linktext: 'Scholar', url: 'https://scholar.google.com/', votes: 40 }
+                ]
+            },
+            methods: {
+                upvote: function (id) {
+
+                    //this.links[id].votes++; funktioniert nicht, wenn umsoritert wurde
+                    clickedlink = this.links.find(link => link.id === id);
+                    clickedlink.votes++;
+                    this.sortieren();
+
+                },
+                sortieren: function () {
+                    this.links.sort(
+                        function (link1, link2) {
+                            return link2.votes - link1.votes;
+                        }
+                    );
+
+                    hinzufuegen() {
+                        console.log('hinzufuegen geklickt');
+                    }
+
+
+
+
+
+                }
+            },
+            mounted() {
+                this.sortieren();
+            }
+
+
+
+        });
+    </script>
+</body>
+
+</html>
